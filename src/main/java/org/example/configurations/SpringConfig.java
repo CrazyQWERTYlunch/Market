@@ -16,7 +16,7 @@ import org.thymeleaf.spring6.view.ThymeleafViewResolver;
 
 @Configuration
 @ComponentScan("org.example")
-@EnableWebMvc
+//@EnableWebMvc
 @EnableTransactionManagement
 public class SpringConfig implements WebMvcConfigurer {
 
@@ -32,7 +32,7 @@ public class SpringConfig implements WebMvcConfigurer {
         SpringResourceTemplateResolver templateResolver = new SpringResourceTemplateResolver();
         templateResolver.setApplicationContext(applicationContext);
         templateResolver.setPrefix("/WEB-INF/view/");
-        templateResolver.setSuffix(".jsp");
+        templateResolver.setSuffix(".html");
         return templateResolver;
     }
 
