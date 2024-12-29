@@ -9,5 +9,6 @@ git push origin dev
 
 ### Для того, чтобы поднять локальный сервер нужно:
 
-1. Запустить Main-файл (или в терминале выполнить команду ```./gradlew bootRun```)
-2. Перейти в браузере по ссылке: http://localhost:8080/catalog/ (где вместо "/catalog" вписать нужное)
+1. Перед запуском сервера необходимо поменять параметры в файле по пути src/main/resources/database.properties, а именно: jdbc.url, jdbc.username и jdbc.password
+2. Запустить Main-файл (или в терминале выполнить команду ```./gradlew bootRun```)
+3. Перейти в браузере по ссылке: http://localhost:8080/catalog/ (где вместо "/catalog" вписать нужное)
