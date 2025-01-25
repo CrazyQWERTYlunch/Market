@@ -52,6 +52,12 @@ dependencies {
     testAnnotationProcessor("org.projectlombok:lombok")
 
     implementation("org.thymeleaf:thymeleaf-spring6:3.1.3.RELEASE")
+
+    // https://mvnrepository.com/artifact/me.paulschwarz/spring-dotenv
+    implementation("me.paulschwarz:spring-dotenv:2.5.4")
+
+    implementation ("org.mapstruct:mapstruct:1.5.5.Final")
+    annotationProcessor ("org.mapstruct:mapstruct-processor:1.5.5.Final")
 }
 
 tasks.test {
