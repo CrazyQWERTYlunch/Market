@@ -1,9 +1,12 @@
-package org.example.catalog.entity;
+package org.example.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Entity
 @Table(name = "category")
@@ -24,4 +27,8 @@ public class CategoryEntity {
 
     @Column(name = "image")
     private String image;
+
+    @OneToMany(mappedBy = "category", fetch = FetchType.EAGER)
+    @JsonManagedReference
+    private List<ProductEntity> products;
 }

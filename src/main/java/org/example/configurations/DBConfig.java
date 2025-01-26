@@ -1,6 +1,7 @@
 package org.example.configurations;
 
-import org.example.catalog.entity.CategoryEntity;
+import org.example.entity.CategoryEntity;
+import org.example.entity.ProductEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -27,7 +28,7 @@ public class DBConfig {
     public LocalSessionFactoryBean sessionFactory() {
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
         sessionFactory.setDataSource(dataSource());
-        sessionFactory.setAnnotatedClasses(CategoryEntity.class);
+        sessionFactory.setAnnotatedClasses(CategoryEntity.class, ProductEntity.class);
         sessionFactory.setHibernateProperties(hibernateProperties());
         return sessionFactory;
     }

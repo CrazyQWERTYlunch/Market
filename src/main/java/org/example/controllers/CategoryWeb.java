@@ -1,8 +1,9 @@
 package org.example.controllers;
 
 import io.swagger.v3.oas.annotations.Operation;
-import org.example.catalog.entity.CategoryEntity;
-import org.example.catalog.services.CategoryService;
+import org.example.entity.CategoryEntity;
+import org.example.entity.ProductEntity;
+import org.example.services.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,7 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.List;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/categories/")
 public class CategoryWeb {
 
     private final CategoryService categoryService;
@@ -58,8 +59,8 @@ public class CategoryWeb {
     @PostMapping("createCategory/{id}/")
     @Operation(summary = "Create category endpoint",
             description = "This is a create category endpoint.")
-    public CategoryEntity createCategory(@RequestBody CategoryEntity category) {
-        return categoryService.createCategory(category);
+    public ResponseEntity<CategoryEntity> createCategory(@RequestBody CategoryEntity category) {
+        return new ResponseEntity<>(categoryService.createCategory(category), HttpStatus.CREATED);
     }
 
     @DeleteMapping("deleteCategory/{id}/")
@@ -75,11 +76,19 @@ public class CategoryWeb {
         }
     }
 
-    @GetMapping(value = "catalog/")
-    @Operation(summary = "Catalog endpoint", description = "This is a catalog endpoint.")
-    public ModelAndView showCatalog() {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("catalog-view");
-        return modelAndView;
+    @GetMapping("getProductsByCategory/{categoryId}/")
+    @Operation(summary = "Get products by category id endpoint",
+            description = "This is an endpoint to get all products by category id.")
+    public ResponseEntity<List<ProductEntity>> getProductsByCategoryId(@PathVariable int categoryId) {
+        List<ProductEntity> products = categoryService.getProductsByCategoryId(categoryId);
+        return new ResponseEntity<>(products, HttpStatus.OK);
     }
+
+//    @GetMapping(value = "catalog/")
+//    @Operation(summary = "Catalog endpoint", description = "This is a catalog endpoint.")
+//    public ModelAndView showCatalog() {
+//        ModelAndView modelAndView = new ModelAndView();
+//        modelAndView.setViewName("catalog-view");
+//        return modelAndView;
+//    }
 }
