@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Каталог товаров</title>
-    <link rel="stylesheet" type="text/css" th:href="@{ /css/catalog-style.css }">
+    <link rel="stylesheet" th:href="@{/css/catalog-style.css}">
 </head>
 <body>
 <header>
@@ -21,13 +21,13 @@
 
 <main>
     <section id="catalog">
-        <h2>Каталог товаров</h2>
-        <div class="product-card">
-            <img src="https://via.placeholder.com/150" alt="Продукт">
-            <h3>Название продукта</h3>
-            <p>Описание продукта. Это краткая информация о товаре.</p>
-            <p class="price">Цена: 500 руб.</p>
-            <button class="add-to-cart">Добавить в корзину</button>
+        <h2>Категории</h2>
+        <div class="product-list">
+            <div class="product-card" th:each="category : ${categories}">
+                <img th:src="${category.image}" alt="Продукт">
+                <h3 th:text="${category.name}">Название продукта</h3>
+                <button class="add-to-cart">Добавить в корзину</button>
+            </div>
         </div>
     </section>
 </main>
