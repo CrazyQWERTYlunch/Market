@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layout}">
+<head>
+    <title>Каталог товаров</title>
+</head>
+<body>
+
+<!-- Контент страницы -->
+<div th:fragment="content">
+    <section id="catalog">
+        <h2>Категории</h2>
+        <div class="product-list">
+            <div class="product-card" th:each="category : ${categories}">
+                <img th:src="${category.image}" alt="Продукт">
+                <h3 th:text="${category.name}">Название продукта</h3>
+                <button class="add-to-cart">Добавить в корзину</button>
+            </div>
+        </div>
+    </section>
+</div>
+
+</body>
+</html>

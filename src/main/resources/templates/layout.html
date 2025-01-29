@@ -3,11 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Каталог товаров</title>
-    <link rel="stylesheet" th:href="@{/css/catalog-style.css}">
+    <title th:text="${pageTitle}">Заголовок страницы</title>
+    <link rel="stylesheet" th:href="@{/css/categories-style.css}">
 </head>
 <body>
-<header>
+
+<!-- Фрагмент header -->
+<header th:fragment="header">
     <h1>Онлайн-магазин еды</h1>
     <nav>
         <ul>
@@ -19,21 +21,15 @@
     </nav>
 </header>
 
+<!-- Основной контент страницы -->
 <main>
-    <section id="catalog">
-        <h2>Категории</h2>
-        <div class="product-list">
-            <div class="product-card" th:each="category : ${categories}">
-                <img th:src="${category.image}" alt="Продукт">
-                <h3 th:text="${category.name}">Название продукта</h3>
-                <button class="add-to-cart">Добавить в корзину</button>
-            </div>
-        </div>
-    </section>
+    <div th:replace="~{:: content}"></div>
 </main>
 
-<footer>
+<!-- Фрагмент footer -->
+<footer th:fragment="footer">
     <p>&copy; 2024 Онлайн-магазин еды</p>
 </footer>
+
 </body>
 </html>

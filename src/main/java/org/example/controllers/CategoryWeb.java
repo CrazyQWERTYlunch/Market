@@ -89,7 +89,7 @@ public class CategoryWeb {
     @Operation(summary = "Root endpoint", description = "This is a root endpoint.")
     public ModelAndView showCategories(Model model) {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("catalog-view");
+        modelAndView.setViewName("categories-view");
 
         List<CategoryEntity> categories = categoryService.getAllCategories();
         model.addAttribute("categories", categories);
