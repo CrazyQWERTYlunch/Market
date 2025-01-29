@@ -7,6 +7,7 @@ import org.example.services.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -23,12 +24,12 @@ public class CategoryWeb {
         this.categoryService = categoryService;
     }
 
-    @GetMapping(value = "")
-    @Operation(summary = "Root endpoint",
-            description = "This is a root endpoint.")
-    public ResponseEntity<String> showHomePage() {
-        return new ResponseEntity<>("Hello, world!", HttpStatus.OK);
-    }
+//    @GetMapping(value = "")
+//    @Operation(summary = "Root endpoint",
+//            description = "This is a root endpoint.")
+//    public ResponseEntity<String> showHomePage() {
+//        return new ResponseEntity<>("Hello, world!", HttpStatus.OK);
+//    }
 
     @GetMapping(value = "allCategories/")
     @Operation(summary = "Get all categories endpoint",
@@ -84,11 +85,15 @@ public class CategoryWeb {
         return new ResponseEntity<>(products, HttpStatus.OK);
     }
 
-//    @GetMapping(value = "catalog/")
-//    @Operation(summary = "Catalog endpoint", description = "This is a catalog endpoint.")
-//    public ModelAndView showCatalog() {
-//        ModelAndView modelAndView = new ModelAndView();
-//        modelAndView.setViewName("catalog-view");
-//        return modelAndView;
-//    }
+    @GetMapping(value = "")
+    @Operation(summary = "Root endpoint", description = "This is a root endpoint.")
+    public ModelAndView showCategories(Model model) {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("catalog-view");
+
+        List<CategoryEntity> categories = categoryService.getAllCategories();
+        model.addAttribute("categories", categories);
+
+        return modelAndView;
+    }
 }
