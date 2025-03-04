@@ -23,6 +23,7 @@ dependencies {
 
     // Spring Boot Starter для работы с PostgreSQL
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+    implementation("org.springframework.boot:spring-boot-starter-actuator")
     runtimeOnly("org.postgresql:postgresql")
 
     // Spring Boot Starter для валидации
