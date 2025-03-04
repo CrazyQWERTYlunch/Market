@@ -31,4 +31,15 @@ public class CategoryEntity {
     @OneToMany(mappedBy = "category", fetch = FetchType.EAGER)
     @JsonManagedReference
     private List<ProductEntity> products;
+
+    @Override
+    public String toString() {
+        return "CategoryEntity{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", slug='" + slug + '\'' +
+                ", image='" + image + '\'' +
+                ", products=" + products +
+                '}';
+    }
 }
